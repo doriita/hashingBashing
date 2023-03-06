@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,20 +25,32 @@ class WordPuzzleTest {
             // here length returns number of columns corresponding to current row
             for (int j = 0; j < matrix[i].length; j++){
                 // using tabs for equal spaces, looks better aligned
-	            // matrix[i][j] will return each element placed at row ‘i',column 'j'     DIDP \t 
+	            // matrix[i][j] will return each element placed at row ‘i',column 'j'  
 		        System.out.print( matrix[i][j]  + "\t");
 	     }
 	     System.out.println();
 	   }
 	}
 
+    private HashMap<Integer, String> createWordList(){
+        HashMap<Integer, String> wordList = new HashMap<>();
+        return wordList;
+    }
+
 
 	@Test
 	void createAndPrint() {
-        //char[][] matrix = new char[4][4];
 		char[][] matrix  = createMatrix();
         printMatrix(matrix);
 	}
+
+    @Test
+	void detectWords() {
+        char[][] matrix  = createMatrix();
+        HashMap wordList = createWordList();
+		
+	}
+
 
 
 
