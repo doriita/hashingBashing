@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class WordPuzzleTest {
 
-	private WordPuzzle wordPuzzle = new WordPuzzle();
+	private App wordPuzzle = new App();
 
 	private char[][] createMatrix() {
         char[][] matrix = { { 'D', 'I', 'D', 'P' },
