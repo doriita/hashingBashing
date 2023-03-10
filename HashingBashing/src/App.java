@@ -71,7 +71,12 @@ public class App {
 
 
         return subWords;
-    }publi
+    }public static void wordlistToMap(){
+
+    }
+    public static void  findWords(){
+        
+    }
 
     
 }
