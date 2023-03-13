@@ -4,9 +4,17 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class App {
-
+    public int matrixSize;
     public Set<String> subWords = new HashSet<>();
     public Map<String, Integer> wordMap = new HashMap<>();
+
+    /**
+
+     This method finds all subwords int a 2D char matrix to the console widow.
+     @param matrix takes a 2D char array to be printed.
+     */
+
+
 
     public Set<String> findAllSubWords(char[][] matrix) {
 
@@ -69,6 +77,13 @@ public class App {
         return subWords;
     }
 
+    public App(int matrixSize) throws IOException {
+        this.matrixSize = matrixSize;
+        char[][] puzzle = createMatrix();
+        wordlistToMap();
+        findAndPrintMatches();
+    }
+
 
     public void wordlistToMap() throws IOException {
         String fileName = "C:\\Users\\pette\\Documents\\GitHub\\hashingBashing\\HashingBashing\\src\\wordlist.txt";
@@ -78,7 +93,8 @@ public class App {
 
                 Stream linesStream = Files.lines(file.toPath())) {
             linesStream.forEach(line -> {
-                wordMap.put(line.toString(), null);
+                if (line.toString().length() <= matrixSize)
+                    wordMap.put(line.toString(), null);
             });
         }
 
@@ -86,21 +102,27 @@ public class App {
     }
 
 
-    public List<String> findWords() {
+    public void findAndPrintMatches() {
+
+        System.out.println("\nThe found words were: \n");
+
         List<String> matchingWords = new ArrayList<>();
         for (String subWord : subWords) {
-            if (wordMap.containsKey(subWord)) {
+            if (wordMap.containsKey(subWord.toLowerCase())) {
                 matchingWords.add(subWord);
 
             }
 
         }
-        return matchingWords;
+        Collections.sort(matchingWords);
+        System.out.println(matchingWords);
+
 
     }
 
 
-    public char[][] createMatrix(int matrixSize) {
+    public char[][] createMatrix() {
+
         char[][] newPuzzle = new char[matrixSize][matrixSize];
         char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         Random random = new Random();
@@ -110,12 +132,20 @@ public class App {
 
             }
         }
+        printMatrix(newPuzzle);
+        findAllSubWords(newPuzzle);
+
         return newPuzzle;
-
-
     }
+    /**
+
+     This method prints a 2D char matrix to the console widow.
+     @param matrix takes a 2D char array to be printed.
+     */
 
     public void printMatrix(char[][] matrix) {
+        System.out.println("The Matrix:");
+        System.out.println();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -126,23 +156,19 @@ public class App {
     }
 
 
-    //public class mainTest {
     public static void main(String[] args) throws Exception {
-        App game = new App();
+        App game = new App(10);
+        //System.out.println(game.wordMap.size());
 
-        char[][] puzzle = game.createMatrix(16);
+        /*char[][] puzzle = game.createMatrix();
         game.printMatrix(puzzle);
         game.findAllSubWords(puzzle);
 
         game.wordlistToMap();
-        //System.out.println(game.wordMap);
-        for (String str : game.subWords) {
-            System.out.println(str);
 
-        }
         System.out.println(game.wordMap.size());
         System.out.println(game.subWords.size());
-        System.out.println(game.findWords());
-        System.out.println(game.findWords().size());
+        game.findAndPrintMatches();*/
+
     }
 }
