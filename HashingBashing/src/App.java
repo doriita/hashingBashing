@@ -8,6 +8,8 @@ public class App {
     public Set<String> subWords = new HashSet<>();
     public Map<String, Integer> wordMap = new HashMap<>();
 
+
+
     /**
 
      This method finds all subwords int a 2D char matrix to the console widow.
@@ -76,13 +78,14 @@ public class App {
 
         return subWords;
     }
-
     public App(int matrixSize) throws IOException {
         this.matrixSize = matrixSize;
         char[][] puzzle = createMatrix();
         wordlistToMap();
         findAndPrintMatches();
     }
+
+
 
 
     public void wordlistToMap() throws IOException {
