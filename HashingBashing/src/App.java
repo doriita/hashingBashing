@@ -8,23 +8,22 @@ public class App {
     public Set<String> subWords = new HashSet<>();
     public Map<String, Integer> wordMap = new HashMap<>();
 
-    private void run(int matrixSize) throws IOException {
+    private void run(int matrixSize,String filePath) throws IOException {
         this.matrixSize = matrixSize;
         char[][] puzzle = createMatrix();
-        wordlistToMap();
+        wordlistToMap(filePath);
         findAndPrintMatches();
 
     }
 
 
-
     /**
-
-     This method finds all subwords in a 2D char matrix by searching
-     horizontal, vertical, diagonal, it then reverses all found words and adds them to the set and returns the
-     set containing all subwords.
-     @param matrix takes a 2D char array to find the subwords within.
-     @ return a Set of Strings representating the found words in the 2D array with duplicates filtered out..
+     * This method finds all subwords in a 2D char matrix by searching
+     * horizontal, vertical, diagonal, it then reverses all found words and adds them to the set and returns the
+     * set containing all subwords.
+     *
+     * @param matrix takes a 2D char array to find the subwords within.
+     * @ return a Set of Strings representating the found words in the 2D array with duplicates filtered out..
      */
 
     public Set<String> findAllSubWords(char[][] matrix) {
@@ -88,13 +87,16 @@ public class App {
         return subWords;
     }
 
+    /**
+     * This method takes a wordlist in the form of a txt.file and puts it into a hashMap
+     *
+     * @param matrix takes a 2D char array to find the subwords within.
+     * @ return a Set of Strings representating the found words in the 2D array with duplicates filtered out..
+     */
 
 
-
-
-    public void wordlistToMap() throws IOException {
-        String fileName = "C:\\Users\\pette\\Documents\\GitHub\\hashingBashing\\HashingBashing\\src\\wordlist.txt";
-        File file = new File(fileName);
+    public void wordlistToMap(String filePath) throws IOException {
+        File file = new File(filePath);
 
         try (
 
@@ -110,7 +112,6 @@ public class App {
 
 
     public void findAndPrintMatches() {
-
         System.out.println("\nThe found words were: \n");
 
         List<String> matchingWords = new ArrayList<>();
@@ -144,10 +145,11 @@ public class App {
 
         return newPuzzle;
     }
-    /**
 
-     This method prints a 2D char matrix to the console widow.
-     @param matrix takes a 2D char array to be printed.
+    /**
+     * This method prints a 2D char matrix to the console widow.
+     *
+     * @param matrix takes a 2D char array to be printed.
      */
 
     public void printMatrix(char[][] matrix) {
@@ -165,18 +167,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         App game = new App();
-        game.run(4);
-        //System.out.println(game.wordMap.size());
+        game.run(4,"C:\\Users\\pette\\Documents\\GitHub\\hashingBashing\\HashingBashing\\src\\wordlist.txt");
 
-        /*char[][] puzzle = game.createMatrix();
-        game.printMatrix(puzzle);
-        game.findAllSubWords(puzzle);
-
-        game.wordlistToMap();
-
-        System.out.println(game.wordMap.size());
-        System.out.println(game.subWords.size());
-        game.findAndPrintMatches();*/
 
     }
 
