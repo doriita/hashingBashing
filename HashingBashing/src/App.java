@@ -8,15 +8,24 @@ public class App {
     public Set<String> subWords = new HashSet<>();
     public Map<String, Integer> wordMap = new HashMap<>();
 
+    private void run(int matrixSize) throws IOException {
+        this.matrixSize = matrixSize;
+        char[][] puzzle = createMatrix();
+        wordlistToMap();
+        findAndPrintMatches();
+
+    }
+
 
 
     /**
 
-     This method finds all subwords int a 2D char matrix to the console widow.
-     @param matrix takes a 2D char array to be printed.
+     This method finds all subwords in a 2D char matrix by searching
+     horizontal, vertical, diagonal, it then reverses all found words and adds them to the set and returns the
+     set containing all subwords.
+     @param matrix takes a 2D char array to find the subwords within.
+     @ return a Set of Strings representating the found words in the 2D array with duplicates filtered out..
      */
-
-
 
     public Set<String> findAllSubWords(char[][] matrix) {
 
@@ -78,12 +87,7 @@ public class App {
 
         return subWords;
     }
-    public App(int matrixSize) throws IOException {
-        this.matrixSize = matrixSize;
-        char[][] puzzle = createMatrix();
-        wordlistToMap();
-        findAndPrintMatches();
-    }
+
 
 
 
@@ -160,7 +164,8 @@ public class App {
 
 
     public static void main(String[] args) throws Exception {
-        App game = new App(10);
+        App game = new App();
+        game.run(4);
         //System.out.println(game.wordMap.size());
 
         /*char[][] puzzle = game.createMatrix();
@@ -174,4 +179,6 @@ public class App {
         game.findAndPrintMatches();*/
 
     }
+
+
 }
