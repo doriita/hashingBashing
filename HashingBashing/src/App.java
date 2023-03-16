@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 public class App {
     public int matrixSize;
     public Set<String> subWords = new HashSet<>();
-    public Map<String, Integer> wordMap = new HashMap<>();
+    //public Map<String, Integer> wordMap = new HashMap<>();
+    public Set<String >wordMap=new HashSet<>();
 
     /**
      * This method runs the program with given matrix(two-dimensional array) size and file path.
@@ -55,6 +56,7 @@ public class App {
                     stringBuilder.append(matrix[i][k]);
                     subWords.add(stringBuilder.toString());
                 }
+
 
                 // search vertical
                 stringBuilder = new StringBuilder();
@@ -108,7 +110,7 @@ public class App {
                 //tests lines VS length of matrix to only include words with amount of characters equals to size
                 // of matrix or less.
                 if (line.toString().length() <= matrixSize)
-                    wordMap.put(line.toString(), null);
+                    wordMap.add(line.toString());
             });
         }
 
@@ -127,7 +129,7 @@ public class App {
         List<String> matchingWords = new ArrayList<>();
         //iterates the subwords set and check for matches
         for (String subWord : subWords) {
-            if (wordMap.containsKey(subWord.toLowerCase())) {
+            if (wordMap.contains(subWord.toLowerCase())) {
                 //adding matches to the list
                 matchingWords.add(subWord);
 
